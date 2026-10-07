@@ -110,7 +110,109 @@ function gameObject() {
                     blocks: 5,
                     slamDunks: 12,
                 },
-            },
-        },
-    };
+            }   
+
+
+        }
+    }
 }
+
+
+function numPointsScored(playerName) {
+    const game = gameObject();
+
+    if (game.home.players[playerName]) {
+        return game.home.players[playerName].points;
+    }
+
+    return game.away.players[playerName].points;
+}
+
+
+function shoeSize(playerName) {
+    const game = gameObject();
+
+    if (game.home.players[playerName]) {
+        return game.home.players[playerName].shoe;
+    }
+
+    return game.away.players[playerName].shoe;
+}
+
+
+function teamColors(teamName) {
+    const game = gameObject();
+
+    if (game.home.teamName === teamName) {
+        return game.home.colors;
+    }
+
+    return game.away.colors;
+}
+
+
+function teamNames() {
+    const game = gameObject();
+    return [game.home.teamName, game.away.teamName];
+}
+
+function playerNumbers(teamName) {
+    const game = gameObject();
+    let team;
+
+    if (game.home.teamName === teamName) {
+        team = game.home.players;
+    } else {
+        team = game.away.players;
+    }
+
+    return Object.values(team).map(player => player.number);
+}
+
+ Object.values (team.players)
+ .map (function (player) {
+    return player.number;
+  });
+
+function playerStats(playerName) {
+    const game = gameObject();
+
+    if (game.home.players[playerName]) {
+        return game.home.players[playerName];
+    }
+
+    return game.away.players[playerName];
+}
+
+function bigShoeRebounds() {
+    const game = gameObject();
+
+    const players = [
+        ...Object.values(game.home.players),
+        ...Object.values(game.away.players)
+    ];
+
+    let biggestShoe = 0;
+    let rebounds = 0;
+
+    players.forEach(function (player) {
+        if (player.shoe > biggestShoe) {
+            biggestShoe = player.shoe;
+            rebounds = player.rebounds;
+        }
+    });
+
+    return rebounds;
+} 
+
+
+
+
+
+
+
+
+
+
+
+ 
